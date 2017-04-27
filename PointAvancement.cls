@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancement}[2016/11/22 v0.1c Classe rapport avancement]
+\ProvidesClass{PointAvancement}[2017/04/14 v0.1d Classe rapport avancement]
 %	b. Comment gère-t-on les options ?
 \DeclareOption{french}{ \def\mylanguage{french} }
 \def\mylangfrench{french}
@@ -23,6 +23,7 @@
 \ifx\mylanguage\mylangfrench
   \RequirePackage[french]{babel}
   \selectlanguage{french}
+  \frenchbsetup{StandardLists=true} % Utiliser des packages standards de listes pour babel-french
 \fi
 \ifx\mylanguage\mylangenglish
   \RequirePackage[english]{babel}
@@ -33,11 +34,17 @@
 
 \RequirePackage{lmodern}
 \RequirePackage{array}
+\ifx\mylanguage\mylangfrench
+  \RequirePackage{enumitem}
+  \setlist[itemize]{nolistsep,noitemsep}
+  \setlist[enumerate]{nolistsep,noitemsep}
+\fi
 \ifx\mylanguage\mylangenglish
   \RequirePackage{enumitem}
   \setlist[itemize]{nolistsep,noitemsep} % Éviter trop d'espacement entre les items d'une liste en anglais…
   \setlist[enumerate]{nolistsep,noitemsep}
 \fi
+
 \RequirePackage{tcolorbox}
 \tcbuselibrary{breakable}
 \tcbuselibrary{skins}
@@ -91,6 +98,8 @@
 \newcommand\WIP[1]{\textcolor{WIPorange}{\textbf{WIP:}\textrm{ #1}}}
 \definecolor{WIPpurple}{RGB}{128,0,128}
 \newcommand\Question[1]{\textcolor{WIPpurple}{\textbf{Question:}\textrm{ #1}}}
+\newcommand\NdRedac[1]{\textcolor{WIPpurple}{\textbf{Note de rédaction:}\textrm{ #1}}}
+\newcommand\Purple[1]{\textcolor{WIPpurple}{#1}}
 
 % Théorèmes et environnements
 \ifx\mylanguage\mylangfrench
