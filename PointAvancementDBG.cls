@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancementDBG}[2017/04/27 v0.1d-dbg Classe rapport avancement (version debug)]
+\ProvidesClass{PointAvancementDBG}[2017/04/27 v0.1e-dbg Debug Class]
 %	b. Comment gère-t-on les options ?
 \DeclareOption{french}{ \def\mylanguage{french} }
 \def\mylangfrench{french}
@@ -43,13 +43,16 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\B}{\mathbb{B}}
 \RequirePackage{stmaryrd}
 \RequirePackage{extarrows}
+
+% Macros mathématiques
+\newcommand{\R}{\ensuremath\mathbb{R}}
+\newcommand{\N}{\ensuremath\mathbb{N}}
+\newcommand{\Z}{\ensuremath\mathbb{Z}}
+\newcommand{\Q}{\ensuremath\mathbb{Q}}
+\newcommand{\B}{\ensuremath\mathbb{B}}
+\newcommand{\dist}{\ensuremath\mathop{\mathrm{dist}}}
 \newcommand{\xequal}[1]{\xlongequal{\!#1\!}}
 
 % Algorithmes et autres packages d'informatique
