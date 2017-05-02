@@ -2,12 +2,22 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancementDBG}[2017/04/27 v0.1e-dbg Debug Class]
-%	b. Comment gère-t-on les options ?
+\ProvidesClass{PointAvancementDBG}[2017/05/02 v0.1f-dbg Classe rapport avancement (version debug)]
+%   b. Quelles options veut-on mettre en place ?
+\newif\ifPAabstract
+\newif\ifPAauthor
+\newif\ifPAtoc
+\PAabstractfalse
+\PAauthortrue
+\PAtoctrue
+%	c. Comment gère-t-on les options ?
 \DeclareOption{french}{ \def\mylanguage{french} }
 \def\mylangfrench{french}
 \DeclareOption{english}{ \def\mylanguage{english} }
 \def\mylangenglish{english}
+\DeclareOption{abstract}{ \PAabstracttrue }
+\DeclareOption{noauthor}{ \PAauthorfalse }
+\DeclareOption{notoc}{ \PAtocfalse }
 \ExecuteOptions{french}
 \ProcessOptions\relax
 \DeclareOption{11pt}{ \PassOptionsToClass{\CurrentOption}{article} }
@@ -151,13 +161,21 @@
 \AtBeginDocument{
 	\begin{center}
 		{\LARGE \bf \@title} \\
-		\insertpredate{ }\@date \\
+		\insertpredate{ }\@date
+		\ifPAauthor \\
 \ifx\mylanguage\mylangfrench rédigé par \@author \fi
 \ifx\mylanguage\mylangenglish written by \@author \fi
+		\fi
 	\end{center}
 %	\maketitle
-	\hrule \vspace{0.4em}
-	\tableofcontents \vspace{0.4em}
+    \ifPAabstract
+	  \hrule
+	  \input{abstract.tex}
+	\fi
+	\ifPAtoc
+	  \hrule \vspace{0.4em}
+	  \tableofcontents \vspace{0.4em}
+	\fi
 	\hrule
 }
 \newcommand{\predate}[1]{\def\insertpredate{#1}}
