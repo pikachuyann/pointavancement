@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancement}[2017/05/02 v0.1f Classe rapport avancement]
+\ProvidesClass{PointAvancement}[2017/05/03 v0.1g Classe rapport avancement]
 %   b. Quelles options veut-on mettre en place ?
 \newif\ifPAabstract
 \newif\ifPAauthor
@@ -102,6 +102,9 @@
 \usetikzlibrary{shapes,automata,arrows,positioning,petri}
 \RequirePackage{caption}
 \RequirePackage{subfigure}
+
+% Tableaux
+\RequirePackage{multirow}
 
 % Commandes ToDo et affichage clair
 \newcommand\todo[1]{\textcolor{red}{\textbf{ToDo:}\textrm{ #1}}}
