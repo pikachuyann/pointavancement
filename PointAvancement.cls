@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancement}[2017/05/03 v0.1g Classe rapport avancement]
+\ProvidesClass{PointAvancement}[2017/05/24 v0.1h Classe rapport avancement]
 %   b. Quelles options veut-on mettre en place ?
 \newif\ifPAabstract
 \newif\ifPAauthor
@@ -105,6 +105,11 @@
 
 % Tableaux
 \RequirePackage{multirow}
+\RequirePackage{tabularx}
+\renewcommand{\tabularxcolumn}[1]{>{\small}m{#1}}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}{>{\raggedleft\arraybackslash}X}
 
 % Commandes ToDo et affichage clair
 \newcommand\todo[1]{\textcolor{red}{\textbf{ToDo:}\textrm{ #1}}}
@@ -150,7 +155,7 @@
 \fi
 
 \newenvironment{exple}[0]{%
-  \stepcounter{explenb}
+  \refstepcounter{explenb}
   \tcolorbox[opacityfill=1.0,colback=white,sharp corners,
   toprule=0mm,bottomrule=0mm,rightrule=0mm,enhanced,breakable,
   boxsep=0mm,right=0mm,top=1mm,left=1mm,bottom=1mm,

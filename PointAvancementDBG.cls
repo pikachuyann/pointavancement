@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancementDBG}[2017/05/05 v0.1g-dbg2 Classe rapport avancement (version debug)]
+\ProvidesClass{PointAvancementDBG}[2017/05/24 v0.1h Classe rapport avancement (version debug)]
 %   b. Quelles options veut-on mettre en place ?
 \newif\ifPAabstract
 \newif\ifPAauthor
@@ -101,6 +101,11 @@
 
 % Tableaux
 \RequirePackage{multirow}
+\RequirePackage{tabularx}
+\renewcommand{\tabularxcolumn}[1]{>{\small}m{#1}}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}{>{\raggedleft\arraybackslash}X}
 
 % Commandes ToDo et affichage clair
 \newcommand\todo[1]{\textcolor{red}{\textbf{ToDo:}\textrm{ #1}}}
