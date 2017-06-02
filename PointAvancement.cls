@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancement}[2017/05/24 v0.1h Classe rapport avancement]
+\ProvidesClass{PointAvancement}[2017/06/02 v0.1i Classe rapport avancement]
 %   b. Quelles options veut-on mettre en place ?
 \newif\ifPAabstract
 \newif\ifPAauthor
@@ -127,6 +127,7 @@
   \newtheorem{definb}{Définition}
   \newtheorem{propnb}{Proposition}
   \newtheorem{theonb}[propnb]{Théorème}
+  \newtheorem{conjnb}[propnb]{Conjecture}
   \newtheorem*{remq}{Remarque}
   \newtheorem{nota}[definb]{Notation}
   \def\ExampleText{Exemple}
@@ -134,6 +135,7 @@
 \ifx\mylanguage\mylangenglish
   \newtheorem{definb}{Definition}
   \newtheorem{propnb}{Proposition}
+  \newtheorem{conjnb}[propnb]{Surmise}
   \newtheorem{theonb}[propnb]{Theorem}
   \newtheorem*{remq}{Remark}
   \newtheorem{nota}[definb]{Notation}
@@ -144,13 +146,15 @@
 \ifx\mylanguage\mylangfrench
   \newtheorem{defi}[definb]{Définition}
   \newtheorem{prop}[propnb]{Proposition}
+  \newtheorem{conj}[propnb]{Conjecture}
   \newtheorem{theo}[propnb]{Théorème}
   \renewcommand{\proofname}{Preuve}
 \fi
 \ifx\mylanguage\mylangenglish
   \newtheorem{defi}[definb]{Definition}
   \newtheorem{prop}[propnb]{Proposition}
-  \newtheorem{theo}[theonb]{Theorem}
+  \newtheorem{conj}[propnb]{Surmise}
+  \newtheorem{theo}[propnb]{Theorem}
   \renewcommand{\proofname}{Proof}
 \fi
 
