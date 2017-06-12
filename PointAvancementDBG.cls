@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancementDBG}[2017/06/02 v0.1i Classe rapport avancement (version debug)]
+\ProvidesClass{PointAvancementDBG}[2017/06/02 v0.1j Classe rapport avancement (version debug)]
 %   b. Quelles options veut-on mettre en place ?
 \newif\ifPAabstract
 \newif\ifPAauthor
@@ -20,7 +20,9 @@
 \DeclareOption{notoc}{ \PAtocfalse }
 \ExecuteOptions{french}
 \ProcessOptions\relax
+\DeclareOption{12pt}{ \PassOptionsToClass{\CurrentOption}{article} }
 \DeclareOption{11pt}{ \PassOptionsToClass{\CurrentOption}{article} }
+\DeclareOption{10pt}{ \PassOptionsToClass{\CurrentOption}{article} }
 \DeclareOption*{ \ClassWarning{myclass}{Unknown option '\CurrentOption'} }
 \ExecuteOptions{11pt}
 \ProcessOptions\relax
