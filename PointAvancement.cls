@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancement}[2017/06/12 v0.1j Classe rapport avancement]
+\ProvidesClass{PointAvancement}[2017/06/16 v0.1k Classe rapport avancement]
 %   b. Quelles options veut-on mettre en place ?
 \newif\ifPAabstract
 \newif\ifPAauthor
@@ -186,8 +186,14 @@
 \RequirePackage{etoolbox} % Package utile pour des définitions
 
 % Définition du début de document
-\ifx\mylanguage\mylangfrench \def\insertpredate{pour le} \fi
-\ifx\mylanguage\mylangenglish \def\insertpredate{} \fi
+\ifx\mylanguage\mylangfrench
+    \def\insertpredate{pour le}
+    \def\insertpreauthor{rédigé par}
+\fi
+\ifx\mylanguage\mylangenglish
+    \def\insertpredate{}
+    \def\insertpreauthor{written by}
+\fi
 \setcounter{tocdepth}{2} % Limite la profondeur de la table des contenus aux sous-sections
 \makeatletter
 \AtBeginDocument{
@@ -195,8 +201,7 @@
 		{\LARGE \bf \@title} \\
 		\insertpredate{ }\@date
 		\ifPAauthor \\
-\ifx\mylanguage\mylangfrench rédigé par \@author \fi
-\ifx\mylanguage\mylangenglish written by \@author \fi
+        \insertpreauthor{ }\@author
 		\fi
 	\end{center}
 %	\maketitle
@@ -208,9 +213,10 @@
 	  \hrule \vspace{0.4em}
 	  \tableofcontents \vspace{0.4em}
 	\fi
-	\hrule
+	\hrule \vspace{0.4em}
 }
 \newcommand{\predate}[1]{\edef\insertpredate{#1}}
+\newcommand{\preauthor}[1]{\edef\insertpreauthor{#1}}
 \makeatother
 
 % --- Outils de gestion des références
