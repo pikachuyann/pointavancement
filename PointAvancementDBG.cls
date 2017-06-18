@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancementDBG}[2017/06/16 v0.1k Classe rapport avancement (version debug)]
+\ProvidesClass{PointAvancementDBG}[2017/06/18 v0.1l Classe rapport avancement (version debug)]
 %   b. Quelles options veut-on mettre en place ?
 \newif\ifPAabstract
 \newif\ifPAauthor
@@ -23,10 +23,15 @@
 \DeclareOption{12pt}{ \PassOptionsToClass{\CurrentOption}{article} }
 \DeclareOption{11pt}{ \PassOptionsToClass{\CurrentOption}{article} }
 \DeclareOption{10pt}{ \PassOptionsToClass{\CurrentOption}{article} }
-\DeclareOption*{ \ClassWarning{myclass}{Unknown option '\CurrentOption'} }
 \ExecuteOptions{11pt}
 \ProcessOptions\relax
-\LoadClass[a4paper]{article}
+\DeclareOption{a5paper}{ \PassOptionsToClass{\CurrentOption}{article} }
+\DeclareOption{a4paper}{ \PassOptionsToClass{\CurrentOption}{article} }
+\ExecuteOptions{a4paper}
+\ProcessOptions\relax
+\DeclareOption*{ \ClassWarning{myclass}{Unknown option '\CurrentOption'} }
+\ProcessOptions\relax
+\LoadClass{article}
 % -----------------------------------
 
 % Packages de formattage et d'encodage
