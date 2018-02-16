@@ -7,9 +7,11 @@
 \newif\ifPAabstract
 \newif\ifPAauthor
 \newif\ifPAtoc
+\newif\ifPAdate
 \PAabstractfalse
 \PAauthortrue
 \PAtoctrue
+\PAdatetrue
 %	c. Comment gère-t-on les options ?
 \DeclareOption{french}{ \def\mylanguage{french} }
 \def\mylangfrench{french}
@@ -18,6 +20,7 @@
 \DeclareOption{abstract}{ \PAabstracttrue }
 \DeclareOption{noauthor}{ \PAauthorfalse }
 \DeclareOption{notoc}{ \PAtocfalse }
+\DeclareOption{nodate}{ \PAdatefalse }
 \ExecuteOptions{french}
 \ProcessOptions\relax
 \DeclareOption{12pt}{ \PassOptionsToClass{\CurrentOption}{article} }
@@ -203,8 +206,10 @@
 \makeatletter
 \AtBeginDocument{
 	\begin{center}
-		{\LARGE \bf \@title} \\
+		{\LARGE \bf \@title}
+        \ifPAdate \\
 		\insertpredate{ }\@date
+        \fi
 		\ifPAauthor \\
         \insertpreauthor{ }\@author
 		\fi
