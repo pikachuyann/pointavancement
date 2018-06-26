@@ -2,7 +2,7 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancement}[2018/06/22 v0.1n Classe rapport avancement]
+\ProvidesClass{PointAvancement}[2018/06/22 v0.1na Classe rapport avancement]
 %   b. Quelles options veut-on mettre en place ?
 \newif\ifPAabstract
 \newif\ifPAauthor
@@ -23,6 +23,7 @@
 \DeclareOption{noauthor}{ \PAauthorfalse }
 \DeclareOption{notoc}{ \PAtocfalse }
 \DeclareOption{nodate}{ \PAdatefalse }
+\DeclareOption{splittoc}{ \PAsplittoctrue }
 \ExecuteOptions{french}
 \ProcessOptions\relax
 \DeclareOption{12pt}{ \PassOptionsToClass{\CurrentOption}{article} }
@@ -207,6 +208,9 @@
 \ifPAsplittoc
     \setcounter{tocdepth}{1}
     \RequirePackage{minitoc}
+    \ifx\mylanguage\mylangfrench
+        \renewcommand\stctitle{Contenu}
+    \fi
 \else
     \setcounter{tocdepth}{2} % Limite la profondeur de la table des contenus aux sous-sections
 \fi
