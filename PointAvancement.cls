@@ -2,16 +2,18 @@
 %	0.
 \NeedsTeXFormat{LaTeX2e}
 %	a. Quelle est notre classe ?
-\ProvidesClass{PointAvancement}[2017/06/18 v0.1l Classe rapport avancement]
+\ProvidesClass{PointAvancement}[2018/06/22 v0.1n Classe rapport avancement]
 %   b. Quelles options veut-on mettre en place ?
 \newif\ifPAabstract
 \newif\ifPAauthor
 \newif\ifPAtoc
 \newif\ifPAdate
+\newif\ifPAsplittoc
 \PAabstractfalse
 \PAauthortrue
 \PAtoctrue
 \PAdatetrue
+\PAsplittocfalse
 %	c. Comment gère-t-on les options ?
 \DeclareOption{french}{ \def\mylanguage{french} }
 \def\mylangfrench{french}
@@ -202,9 +204,17 @@
     \def\insertpredate{}
     \def\insertpreauthor{written by}
 \fi
-\setcounter{tocdepth}{2} % Limite la profondeur de la table des contenus aux sous-sections
+\ifPAsplittoc
+    \setcounter{tocdepth}{1}
+    \RequirePackage{minitoc}
+\else
+    \setcounter{tocdepth}{2} % Limite la profondeur de la table des contenus aux sous-sections
+\fi
 \makeatletter
 \AtBeginDocument{
+    \ifPAsplittoc
+        \dosecttoc
+    \fi
 	\begin{center}
 		{\LARGE \bf \@title}
         \ifPAdate \\
@@ -228,6 +238,16 @@
 \newcommand{\predate}[1]{\edef\insertpredate{#1}}
 \newcommand{\preauthor}[1]{\edef\insertpreauthor{#1}}
 \makeatother
+\ifPAsplittoc
+\makeatletter
+    \renewcommand\section[1]{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\Large\bfseries}{#1}
+                         \tightmtctrue \setcounter{stc}{\thesection}
+                         \secttoc{}}
+\makeatother
+\fi
 
 % --- Outils de gestion des références
 \def\insertbibfile{}%
